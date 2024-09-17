@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.MedicinesPage"
+             Title="Medicines">
+    <VerticalStackLayout Spacing="5">
+        <Label 
+            Text="Here is all about medicines!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <ListView x:Name="listMedicines" BackgroundColor="Transparent"
+                  SeparatorColor="Aqua"
+                  >
+            
+        </ListView>
+        <Button x:Name="btnEditMedicine" Clicked="btnEditMedicine_Clicked" Text="Edit Medicine" />
+        <Button x:Name="btnAddMedicine" Clicked="btnAddMedicine_Clicked" Text="Add Medicine"/>
+    </VerticalStackLayout>
+</ContentPage>
