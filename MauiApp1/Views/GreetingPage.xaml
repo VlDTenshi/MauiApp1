@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.GreetingPage"
+             Title="Greeting Page">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to Health-Care-App!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button
+            Text="Learn more about this app"
+            Clicked="Button_Clicked"
+            VerticalOptions="Fill"  />
+    </VerticalStackLayout>
+</ContentPage>
