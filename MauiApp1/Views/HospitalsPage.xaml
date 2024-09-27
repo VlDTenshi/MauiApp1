@@ -2,18 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.HospitalsPage"
-             Title="Hospitals">
-    <VerticalStackLayout>
-        <Label 
-            Text="Here is all about hospitals!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <ListView x:Name="listExercises" BackgroundColor="Transparent"
-  SeparatorColor="Aqua"
-  >
-
-        </ListView>
-        <Button x:Name="btnEditHospital" Clicked="btnEditHospital_Clicked"  Text="Edit Hospital" />
-        <Button x:Name="btnAddHospital" Clicked="btnAddHospital_Clicked"  Text="Add Hospital"/>
-    </VerticalStackLayout>
+             Title="Hospitals"
+             BackgroundColor="Bisque">
+    <CollectionView ItemsSource="{Binding Hospitals}">
+        <CollectionView.Header>
+            <Frame BackgroundColor="Black">
+                <Label Text="HOSPITALS"
+                       FontFamily="OpenSans-Regular.ttf"
+                       FontAttributes="Bold"
+                       FontSize="Title"
+                       HorizontalOptions="Center"
+                       TextColor="YellowGreen"/>
+            </Frame>
+        </CollectionView.Header>
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="2"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame Margin="20"
+                           HeightRequest="250"
+                           WidthRequest="250">
+                    <VerticalStackLayout>
+                        <Image Source="{Binding Image}"/>
+                        <Label Text="{Binding Name}"
+                                   FontFamily="OpenSans-Regular.ttf"
+                                   FontSize="Large"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <CollectionView.Footer>
+            <Frame VerticalOptions="End" Margin="0,500,0,10" BackgroundColor="Bisque">
+                <VerticalStackLayout Spacing="5">
+                    <Button x:Name="btnEditHospital" Clicked="btnEditHospital_Clicked"  Text="Edit Hospital" 
+                            BackgroundColor="{StaticResource Primary}"
+                            WidthRequest="130"
+                            CornerRadius="25"/>
+                    <Button x:Name="btnAddHospital" Clicked="btnAddHospital_Clicked"  Text="Add Hospital"
+                            BackgroundColor="{StaticResource Primary}"
+                            WidthRequest="130"
+                            CornerRadius="25"/>
+                    <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
+                            BackgroundColor="Black"
+                            WidthRequest="100"
+                            CornerRadius="25"/>
+                </VerticalStackLayout>
+            </Frame>
+        </CollectionView.Footer>
+    </CollectionView>
 </ContentPage>

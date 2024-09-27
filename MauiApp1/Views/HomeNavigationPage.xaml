@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.HomeNavigationPage"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="True"
+             Shell.FlyoutItemIsVisible="True"
+             Title="Navigation"
+             BackgroundColor="Bisque">
+    <Grid RowDefinitions="*, Auto"
+          ColumnDefinitions="*,*"
+          Padding="0,60,0,40">
+        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="10">
+            <Frame CornerRadius="5" Margin="5"
+                HeightRequest="250"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                HasShadow="True"
+                BorderColor="Green">
+                <StackLayout Spacing="5">
+                    <Label Text="Medicine Side"
+                           FontAttributes="Bold"/>
+                    <Image Source="medicine.png"
+                           HeightRequest="70"
+                           WidthRequest="50"
+                           Aspect="AspectFit"/>
+                    <Button Text="Go To" VerticalOptions="EndAndExpand" Margin="0,65,0,0"
+                            Clicked="Button_Clicked"
+                            CornerRadius="25"
+                            BackgroundColor="{StaticResource Primary}"/>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="5" Margin="5"
+                HeightRequest="250"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                HasShadow="True"
+                BorderColor="Green">
+                <StackLayout Spacing="5">
+                    <Label Text="Hospital Side"
+                           FontAttributes="Bold"/>
+                    <Image Source="hospital.png"
+                           HeightRequest="70"
+                           WidthRequest="50"
+                           Aspect="AspectFit"/>
+                    <Button Text="Go To" VerticalOptions="EndAndExpand" Margin="0,65,0,0"
+                            Clicked="Button_Clicked_1"
+                            CornerRadius="25"
+                            BackgroundColor="{StaticResource Primary}"/>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="0" Grid.Column="1" Spacing="10">
+            <Frame CornerRadius="5" Margin="5"
+                HeightRequest="250"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                HasShadow="True"
+                BorderColor="Green">
+                <StackLayout Spacing="5">
+                    <Label Text="Exercise Side"
+                           FontAttributes="Bold"/>
+                    <Image Source="exercise.png"
+                           HeightRequest="70"
+                           WidthRequest="50"
+                           Aspect="AspectFit"
+                           Margin="20,0,0,0"/>
+                    <Button Text="Go To" VerticalOptions="End" Margin="0,73,0,0"
+                            Clicked="Button_Clicked_2"
+                            CornerRadius="25"
+                            BackgroundColor="{StaticResource Primary}"/>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="5" Margin="5"
+                HeightRequest="250"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                HasShadow="True"
+                BorderColor="Green">
+                <StackLayout Spacing="5">
+                    <Label Text="Contact Side"
+                           FontAttributes="Bold"/>
+                    <Image Source="contact.png"
+                           HeightRequest="70"
+                           WidthRequest="50"
+                           Aspect="AspectFit"/>
+                    <Button Text="Go To" VerticalOptions="End" Margin="0,73,0,0"
+                            Clicked="Button_Clicked_3"
+                            CornerRadius="25"
+                            BackgroundColor="{StaticResource Primary}"/>
+                </StackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </Grid>
+    
+    
+</ContentPage>

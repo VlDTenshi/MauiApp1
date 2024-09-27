@@ -1,3 +1,7 @@
+using MauiApp1.Models;
+using Contact = MauiApp1.Models.Contact;
+using System.Collections.ObjectModel;
+
 namespace MauiApp1.Views;
 
 public partial class ContactsPage : ContentPage
@@ -6,49 +10,64 @@ public partial class ContactsPage : ContentPage
 	{
 		InitializeComponent();
 
-		List<Contact> contacts = new List<Contact>()
-		{
-			new Contact {Name="Doctor", Email="Doctor@gmail.com"},
-			new Contact {Name="Sos", Email="Sos@gmail.com"},
-			new Contact {Name="Nurse", Email="Nurse@gmail.com"},
-		};
-
-		//List<string> contacts = new List<string>() {
-		//	"Doctor",
-		//	"Sos",
-		//	"Nurse",
-		//};
-		listContacts.ItemsSource = contacts;
 	}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
 
-	public class Contact
-	{
-		public string Name { get; set; }
-		public string Email { get; set; }
-	}
-		private void btnEditContact_Clicked(object sender, EventArgs e)
+        SearchBar.Text = string.Empty;
+
+        LoadContacts();
+    }
+
+
+
+		private async void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
+        if (listContacts.SelectedItem != null)
+        {
+            //logic
 
-		}
+            await Shell.Current.GoToAsync($"{nameof(EditContactPage)}?Id={((Contact)listContacts.SelectedItem).ContactId}");
 
-		private void btnAddContact_Clicked(object sender, EventArgs e)
-		{
-
-		}
-
-
-		private void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-		{
-			//logic
-
-			DisplayAlert("Ok", "Ok", "Ok");
-
-			
-		}
+        }
+        }
 	
 
     private void listContacts_ItemTapped(object sender, ItemTappedEventArgs e)
     {
         listContacts.SelectedItem = null;
+    }
+
+    private void btnAdd_Clicked(object sender, EventArgs e)
+    {
+        Shell.Current.GoToAsync(nameof(AddContactPage));
+    }
+
+    private void Delete_Clicked(object sender, EventArgs e)
+    {
+        var menuItem = sender as MenuItem;
+        var contact = menuItem.CommandParameter as Contact;
+        ContactRepository.DeleteContact(contact.ContactId);
+
+        LoadContacts();
+    }
+
+    private void LoadContacts()
+    {
+        var contacts = new ObservableCollection<Contact>(ContactRepository.GetContacts());
+
+        listContacts.ItemsSource = contacts;
+    }
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var contacts = new ObservableCollection<Contact>(ContactRepository.SearchContacts(((SearchBar)sender).Text));
+        listContacts.ItemsSource = contacts;
+    }
+
+    private async void backButton_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
     }
 }

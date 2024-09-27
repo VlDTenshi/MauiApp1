@@ -5,10 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiApp1"
     xmlns:local2="clr-namespace:MauiApp1.Views"
+    xmlns:models="clr-namespace:MauiApp1.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
     Title="MauiApp1">
 
-    <Shell.Resources>
+    <!--<Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
@@ -23,36 +25,120 @@
             </Style>
             <Style BasedOn="{StaticResource BaseStyle}" TargetType="ShellItem" ApplyToDerivedTypes="True" />
         </ResourceDictionary>
-    </Shell.Resources>
+    </Shell.Resources>-->
 
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}"
+                                   StatusBarStyle="LightContent"/>
+    </Shell.Behaviors>
+
+    <ShellContent Title="MainPage"
+                  Shell.FlyoutBehavior="Disabled"
+                  Shell.FlyoutItemIsVisible="False"
+                  ContentTemplate="{DataTemplate local:MainPage}"
+                  Route="MainPage"/>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+        Shell.NavBarIsVisible="True"
+        Shell.FlyoutItemIsVisible="True"
+        Title="Health"
+        Icon="{x:Static models:Icons.Health}"
+        ContentTemplate="{DataTemplate local2:HomeNavigationPage}"
+        Route="HomeNavigationPage" 
+        />
     <ShellContent
         Shell.NavBarIsVisible="True"
-        Title="Health"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Shell.FlyoutItemIsVisible="True"
+        Title="Medicine"
+        Icon="{x:Static models:Icons.Medicine}"
+        ContentTemplate="{DataTemplate local2:MedicinesPage}"
+        Route="MedicinesPage" />
     <ShellContent
-Shell.NavBarIsVisible="True"
-Title="Medicine"
-        Icon="Medicine.png"
-ContentTemplate="{DataTemplate local2:MedicinesPage}"
-Route="MedicinesPage" />
+        Shell.NavBarIsVisible="True"
+        Shell.FlyoutItemIsVisible="True"
+        Title="Contact"
+        Icon="{x:Static models:Icons.Contact}"
+        ContentTemplate="{DataTemplate local2:ContactsPage}"
+        Route="ContactsPage" />
     <ShellContent
-Shell.NavBarIsVisible="True"
-Title="Contact"
-        Icon="contact.png"
-ContentTemplate="{DataTemplate local2:ContactsPage}"
-Route="ContactsPage" />
+        Shell.NavBarIsVisible="True"
+        Shell.FlyoutItemIsVisible="True"
+        Title="Hospital"
+        Icon="{x:Static models:Icons.Hospital}"
+        ContentTemplate="{DataTemplate local2:HospitalsPage}"
+        Route="HospitalsPage" />
     <ShellContent
-Shell.NavBarIsVisible="True"
-Title="Hospital"
-        Icon="hospital.png"
-ContentTemplate="{DataTemplate local2:HospitalsPage}"
-Route="HospitalsPage" />
-    <ShellContent
-Shell.NavBarIsVisible="True"
-Title="Exercise"
-        Icon="exercise.png"
-ContentTemplate="{DataTemplate local2:ExercisesPage}"
-Route="ExercisesPage" />
+        Shell.NavBarIsVisible="True"
+        Shell.FlyoutItemIsVisible="True"
+        Title="Exercise"
+        Icon="{x:Static models:Icons.Exercise}"
+        ContentTemplate="{DataTemplate local2:ExercisesPage}"
+        Route="ExercisesPage" />
+    </FlyoutItem>
+    
+    <TabBar>
+        <ShellContent
+            Title="Health"
+            ContentTemplate="{DataTemplate local2:HomeNavigationPage}"
+            Route="HomeNavigationPage"
+            />
+        <ShellContent
+            Title="Medicine"
+            ContentTemplate="{DataTemplate local2:MedicinesPage}"
+            Route="MedicinesPage"/>
+        <ShellContent
+            Title="Contact"
+            ContentTemplate="{DataTemplate local2:ContactsPage}"
+            Route="ContactsPage"/>
+        <ShellContent
+            Title="Hospital"
+            ContentTemplate="{DataTemplate local2:HospitalsPage}"
+            Route="HospitalsPage"/>
+        <ShellContent
+            Title="Exercise"
+            ContentTemplate="{DataTemplate local2:ExercisesPage}"
+            Route="ExercisesPage"/>
+    </TabBar>
 
+    <MenuItem Text="Sign out"
+              IconImageSource="exit"
+              Clicked="SignOutMenuItem_Clicked"
+              />
+
+    <Shell.FlyoutHeader>
+        <Border BackgroundColor="{StaticResource Primary}"
+                Padding="10"
+                StrokeThickness="0">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 Spacing="10">
+                <Image Source="loading_image"
+                       HeightRequest="150"
+                       WidthRequest="150"
+                       HorizontalOptions="Center"/>
+                <Label Text="HealthNess"
+                       HorizontalOptions="Center"
+                       FontSize="18"
+                       TextColor="White"
+                       TextTransform="Uppercase"
+                       FontAttributes="Bold"/>
+            </VerticalStackLayout>
+        </Border>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <Border BackgroundColor="{StaticResource Primary}"
+                StrokeThickness="0"
+                Padding="10">
+            <Label Text="Developed by Vladimir Dudakov"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   FontSize="15"
+                   FontAttributes="Bold"/>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </Border.GestureRecognizers>
+        </Border>
+    </Shell.FlyoutFooter>
+    
 </Shell>

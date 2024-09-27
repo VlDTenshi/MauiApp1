@@ -4,6 +4,7 @@ namespace MauiApp1
 {
     public partial class App : Application
     {
+        //public static UserInfo UserInfo;
         public App()
         {
             InitializeComponent();

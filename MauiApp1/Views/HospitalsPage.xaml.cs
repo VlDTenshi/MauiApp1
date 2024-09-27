@@ -16,4 +16,9 @@ public partial class HospitalsPage : ContentPage
     {
         Shell.Current.GoToAsync(nameof(AddHospitalPage));
     }
+
+    private async void backButton_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("..");
+    }
 }

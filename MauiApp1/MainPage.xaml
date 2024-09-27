@@ -1,9 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.MainPage">
+             x:Class="MauiApp1.MainPage"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
 
-    <ScrollView>
+
+    <Grid RowDefinitions="*, Auto"
+          Padding="0,0,0,40">
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="20"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+            <Image Source="loading_image_1"
+                   HeightRequest="250"
+                   WidthRequest="250"
+                   Aspect="AspectFit"/>
+            <Label Text="Welcome"
+                   FontSize="20"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+            <Label Text="App for tracking your health"
+                   FontAttributes="Bold"
+                   FontSize="25"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout Grid.Row="1"
+                             Spacing="20"
+                             HorizontalOptions="Center">
+            <Button Text="SignUp" Clicked="SignUp_Clicked"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="250"/>
+            <Button Text="SignIn" Clicked="SignIn_Clicked"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="250"/>
+            <Button Text="Continue without logging" 
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    CornerRadius="25"
+                    HeightRequest="45"
+                    WidthRequest="200"
+                    Clicked="Without_log_Clicked" />
+        </VerticalStackLayout>
+    </Grid>
+
+    <!--<ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
@@ -37,6 +88,7 @@
                 Clicked="Button_Clicked_2"
                 HorizontalOptions="Fill"/>
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView>-->
+    
 
 </ContentPage>

@@ -1,19 +1,85 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model ="clr-namespace:MauiApp1.Models"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModels"
+             x:DataType="viewmodel:ExerciseViewModel"
              x:Class="MauiApp1.Views.ExercisesPage"
-             Title="Exercises">
-    <VerticalStackLayout>
-        <Label 
-            Text="Here is all about exercises!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <ListView x:Name="listExercises" BackgroundColor="Transparent"
-          SeparatorColor="Aqua"
-          >
-
-        </ListView>
-        <Button x:Name="btnEditExercise" Clicked="btnEditExercise_Clicked"  Text="Edit Exercise" />
-        <Button x:Name="btnAddExercise" Clicked="btnAddExercise_Clicked"  Text="Add Exercise"/>
-    </VerticalStackLayout>
+             Title="{Binding Title}"
+             BackgroundColor="Bisque">
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto, Auto, Auto"
+        RowSpacing="0">
+        <CollectionView ItemsSource="{Binding Exercises}"
+                        SelectionMode="None"
+                        Grid.ColumnSpan="2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Exercise">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125">
+                            <Grid Padding="0" ColumnDefinitions="125,*">
+                                <Frame HeightRequest="99" WidthRequest="25">
+                                    <WebView Source="{Binding Image}"
+                                         WidthRequest="90"
+                                         HeightRequest="99"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="Center"/>
+                                </Frame>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Get Exercises"
+                Command="{Binding GetExercisesCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                HeightRequest="40"
+                WidthRequest="130"
+                Margin="0,20,0,0"/>
+        <Grid 
+            Grid.Row="2"
+            ColumnDefinitions="*">
+            <Button x:Name="btnEditExercise" Clicked="btnEditExercise_Clicked"  Text="Edit Exercise"                
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="40"
+                WidthRequest="130"
+                CornerRadius="25"
+                HorizontalOptions="Center"
+                Margin="400,10,5,0"/>
+            <Button x:Name="btnAddExercise" Clicked="btnAddExercise_Clicked"  Text="Add Exercise"                
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="40"
+                WidthRequest="130"
+                CornerRadius="25"
+                HorizontalOptions="Center"
+                Margin="0,10,0,0"/>
+        </Grid>
+        <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                BackgroundColor="Black"
+                HeightRequest="40"
+                WidthRequest="100"
+                CornerRadius="25"
+                Margin="0,20,0,0"
+                HorizontalOptions="Center"/>
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>
+    </Grid>
 </ContentPage>

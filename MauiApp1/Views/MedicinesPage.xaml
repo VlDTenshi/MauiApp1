@@ -2,18 +2,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.MedicinesPage"
-             Title="Medicines">
+             Title="Medicines"
+             BackgroundColor="Bisque">
     <VerticalStackLayout Spacing="5">
         <Label 
             Text="Here is all about medicines!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <ListView x:Name="listMedicines" BackgroundColor="Transparent"
+        <!--<ListView x:Name="listMedicines" BackgroundColor="Transparent"
                   SeparatorColor="Aqua"
                   >
             
-        </ListView>
-        <Button x:Name="btnEditMedicine" Clicked="btnEditMedicine_Clicked" Text="Edit Medicine" />
-        <Button x:Name="btnAddMedicine" Clicked="btnAddMedicine_Clicked" Text="Add Medicine"/>
+        </ListView>-->
+        <CarouselView ItemsSource="{Binding Medicines}"
+                      ItemTemplate="{StaticResource MedicineCarouselDictionary}">
+            <!--<CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame CornerRadius="5" Margin="5"
+                               HeightRequest="250"
+                               HorizontalOptions="Center"
+                               VerticalOptions="CenterAndExpand"
+                               HasShadow="True">
+                            <StackLayout>
+                                <Label Text="{Binding Name}"
+                                       FontFamily="OpenSans-Regular.ttf"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+                                <Image Source="{Binding Image}"
+                                       Aspect="Fill"
+                                       HeightRequest="150"
+                                       WidthRequest="150"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>-->
+        </CarouselView>
+        <Button x:Name="btnEditMedicine" Clicked="btnEditMedicine_Clicked" Text="Edit Medicine" 
+                WidthRequest="130"
+                BackgroundColor="{StaticResource Primary}"
+                CornerRadius="25"
+                Margin="0,310,0,0"/>
+        <Button x:Name="btnAddMedicine" Clicked="btnAddMedicine_Clicked" Text="Add Medicine"
+                WidthRequest="130"
+                BackgroundColor="{StaticResource Primary}"
+                CornerRadius="25"/>
+        <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
+                WidthRequest="100"
+                Margin="0,0,0,10"
+                BackgroundColor="Black"
+                CornerRadius="25"/>
     </VerticalStackLayout>
 </ContentPage>
