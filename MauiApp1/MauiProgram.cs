@@ -20,12 +20,19 @@ namespace MauiApp1
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<LoadingPage>();
+
+            builder.Services.AddSingleton<ExerciseService>();
 
             builder.Services.AddTransient<MainPage>();
 
             builder.Services.AddTransient<ExercisesPage>();
-            builder.Services.AddSingleton<ExerciseService>();
+            
             builder.Services.AddTransient<ExerciseViewModel>();
+
+            builder.Services.AddTransient<ExerciseDetailsViewModel>();
+
+            builder.Services.AddTransient<ExerciseDetailsPage>();
 
             //builder.Services.AddSingleton<LoginPage>();
 

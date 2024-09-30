@@ -19,6 +19,7 @@ namespace MauiApp1
             Routing.RegisterRoute(nameof(EditContactPage), typeof(EditContactPage));
             Routing.RegisterRoute(nameof(HospitalsPage), typeof(HospitalsPage));
             Routing.RegisterRoute(nameof(ExercisesPage), typeof(ExercisesPage));
+            Routing.RegisterRoute(nameof(ExerciseDetailsPage), typeof(ExerciseDetailsPage));
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
