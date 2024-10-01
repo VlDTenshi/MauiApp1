@@ -36,7 +36,11 @@
                 <Label Text="{Binding Exercise.Description}"/>
                 <Label Text="{Binding Exercise.Repetition, StringFormat= 'Repetition: {0}'}"/>
             </VerticalStackLayout>
-            <Button Text="Edit" Clicked="Button_Clicked"/>
+            <Button Text="Edit" Command="{Binding EditExerciseCommand}"
+                    HeightRequest="40"
+                    WidthRequest="130"
+                    CornerRadius="25"
+                    BackgroundColor="{StaticResource Primary}"/>
         </VerticalStackLayout>
     </ScrollView>
     

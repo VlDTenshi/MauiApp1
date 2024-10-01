@@ -21,7 +21,7 @@ namespace MauiApp1.ViewModels
         //Commands
         public Command GetExercisesCommand { get; }
         public Command AddExerciseCommand { get; }
-        public Command EditExerciseCommand { get; }
+        public Command<Exercise> UpdateExerciseCommand { get; }
         public Command<Exercise> RemoveExerciseCommand {get;}
 
         //Service
@@ -44,12 +44,15 @@ namespace MauiApp1.ViewModels
             this.exerciseService = exerciseService; // instead of using this initialization --> new ExerciseService();
 
             GetExercisesCommand = new Command(async () => await GetExercisesAsync());
-            AddExerciseCommand = new Command(async () => await AddExerciseAsync());
-            //EditExerciseCommand = new Command<Exercise>(async (exercise) => await EditExerciseAsync(exercise));
+            AddExerciseCommand = new Command(async () => await GoToAddExercisePageAsync());
+            UpdateExerciseCommand = new Command<Exercise>(async (exercise) => await UpdateExerciseAsync(exercise));
             RemoveExerciseCommand = new Command<Exercise>(async (exercise) => await RemoveExerciseAsync(exercise));
         }
 
-        
+        private async Task GoToAddExercisePageAsync()
+        {
+            await Shell.Current.GoToAsync(nameof(AddExercisePage));
+        }
         public async Task GetExercisesAsync()
         {
             if (IsBusy)
@@ -82,55 +85,99 @@ namespace MauiApp1.ViewModels
         }
 
       
-        public async Task AddExerciseAsync()
+        //public async Task AddExerciseAsync()
+        //{
+        //    if(string.IsNullOrEmpty(ExerciseName) || string.IsNullOrEmpty(ExerciseDescription))
+        //    {
+        //        await Shell.Current.DisplayAlert("Error", "Please enter valid name and description", "Ok");
+        //        return;
+        //    }
+        //    try
+        //    {
+        //        var newExercise = new Exercise
+        //        {
+        //            Name = ExerciseName,
+        //            Description = ExerciseDescription,
+        //            Repetition = ExerciseRepetition,
+        //        };
+
+        //        Exercises.Add(newExercise);
+        //        await exerciseService.AddExercise(newExercise);
+
+        //        ExerciseName = string.Empty;
+        //        ExerciseDescription = string.Empty;
+        //        ExerciseRepetition = string.Empty;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine($"Unable to add exercise: {ex.Message}");
+        //        await Shell.Current.DisplayAlert("Error!", ex.Message, "Ok");
+        //    }
+        //}
+
+        public async Task UpdateExerciseAsync(Exercise exerciseToUpdate)
         {
-            if(string.IsNullOrEmpty(ExerciseName) || string.IsNullOrEmpty(ExerciseDescription))
+            if (exerciseToUpdate == null)
             {
-                await Shell.Current.DisplayAlert("Error", "Please enter valid name and description", "Ok");
+                await Shell.Current.DisplayAlert("Error", "Exercise is not selected", "Ok");
                 return;
             }
+
             try
             {
-                var newExercise = new Exercise
+                // Здесь вы можете обновить поля выбранного упражнения, если они изменились
+                var updatedExercise = new Exercise
                 {
-                    Name = ExerciseName,
-                    Description = ExerciseDescription,
-                    Repetition = ExerciseRepetition,
+                    Name = ExerciseName, // Предполагаем, что новое имя введено
+                    Description = ExerciseDescription, // Новое описание
+                    Repetition = ExerciseRepetition // Новое количество повторений
                 };
 
-                Exercises.Add(newExercise);
-                await exerciseService.AddExercise(newExercise);
+                // Обновляем упражнение через сервис
+                await exerciseService.UpdateExercise(updatedExercise);
 
+                // После обновления очищаем поля
                 ExerciseName = string.Empty;
                 ExerciseDescription = string.Empty;
                 ExerciseRepetition = string.Empty;
+
+                // Обновляем коллекцию упражнений на UI
+                await GetExercisesAsync();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Unable to add exercise: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error!", ex.Message, "Ok");
+                Debug.WriteLine($"Unable to update exercise: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
-        
         public async Task RemoveExerciseAsync(Exercise exercise)
         {
+            if (exercise == null)
+            {
+                await Shell.Current.DisplayAlert("Ошибка", "Упражнение не выбрано.", "Ок");
+                return;
+            }
+
             try
             {
-                if (exercise != null && Exercises.Contains(exercise))
-                {
-                    Exercises.Remove(exercise);
-                    await exerciseService.RemoveExercise(exercise);
-                }
+                // Удаляем упражнение из сервиса
+                await exerciseService.RemoveExercise(exercise);
+
+                // Удаляем упражнение из коллекции
+                Exercises.Remove(exercise);
+
+                // Обновляем UI после удаления
+                await GetExercisesAsync();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                Debug.WriteLine($"Unable to remove exercise: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error!", ex.Message, "Ok");
+                Debug.WriteLine($"Не удалось удалить упражнение: {ex.Message}");
+                await Shell.Current.DisplayAlert("Ошибка", ex.Message, "Ок");
             }
         }
 
-        
+
         //public async Task EditExerciseAsync(Exercise exercise)
         //{
         //    if (exercise != null)

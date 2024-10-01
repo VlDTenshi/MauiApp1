@@ -24,9 +24,9 @@ namespace MauiApp1.Services
 
             //this.httpClient = new HttpClient();
         }
-        public async Task<List<Exercise>> GetExercise()
+        public async Task<List<Exercise>> GetExercise(bool forceReload = false)
         {
-            if(exerciseList.Count > 0) 
+            if(exerciseList.Count > 0 && !forceReload) 
             return exerciseList;
 
             /*var response = await httpClient.GetAsync("URL.json");
@@ -87,11 +87,13 @@ namespace MauiApp1.Services
 
         public async Task RemoveExercise(Exercise exercise)
         {
-            var ExerciseToRemove = exerciseList.FirstOrDefault(f => f.Name == exercise.Name);
+            var exercises = await GetExercise();
+            var ExerciseToRemove = exerciseList.FirstOrDefault(f => f.Id == exercise.Id);
+
             if (ExerciseToRemove != null)
             {
                 //Removing an exercise from the list
-                exerciseList.Remove(ExerciseToRemove);
+                exercises.Remove(ExerciseToRemove);
 
                 await SaveExercisesToFile();
 

@@ -1,5 +1,6 @@
 [
   {
+    "Id": 1,
     "Name": "Knee raise with elbows down",
     "Desciprion": "We start our training program at home with a warm-up cardio exercise that involves the whole body: arms, abdomen, legs. Tighten your abs, perform the exercise at a dynamic pace. A good substitute for running without jumping.",
     "Repetition": "18-20",
@@ -9,6 +10,7 @@
     "ImagePath": "Resources/Images/ex_1.png"
   },
   {
+    "Id": 2,
     "Name": "Sumo squat with pulsation",
     "Desciprion": "Sumo squat is one of the most useful exercises for women, as it involves the buttocks and inner thighs. Make two springs at the bottom to add accentuated load to the glutes.",
     "Repetition": "10-12",
@@ -18,6 +20,7 @@
     "ImagePath": "Resources/Images/ex_2.png"
   },
   {
+    "Id": 3,
     "Name": "Low-amplitude lifts of half-bent arms",
     "Desciprion": "Let's work on slender hands with this simple but effective exercise. You can save your hands from flabbiness even without equipment, it is enough to regularly perform exercises with your own weight.",
     "Repetition": "18-20",
@@ -27,6 +30,7 @@
     "ImagePath": "Resources/Images/ex_3.png"
   },
   {
+    "Id": 4,
     "Name": "Back lunges",
     "Desciprion": "Выпады назад являются один из лучших упражнений для тонуса ягодиц и задней поверхности бедра. Кроме того, упражнение достаточно щадящее для коленных суставов из-за того, что в таком варианте сложно поставить колено впереди носка.",
     "Repetition": "16-18",
@@ -36,6 +40,7 @@
     "ImagePath": "Resources/Images/ex_4.png"
   },
   {
+    "Id": 5,
     "Name": "Lower leg overlaps with arms spread",
     "Desciprion": "We continue to work on fat burning with effective exercises for the whole body at home. Shin covers strengthen the back of the thigh and knees, and arms extensions tighten the arms and shoulders, stretch the spine.",
     "Repetition": "18-20",
@@ -45,6 +50,7 @@
     "ImagePath": "Resources/Images/ex_5.png"
   },
   {
+    "Id": 6,
     "Name": "Shell with a swing of the leg on the side",
     "Desciprion": "We move to a position lying on our side to work on our legs and buttocks. Spreading the bent legs helps to eliminate flabbiness of the inner thigh, and the swing additionally tightens the buttocks and breeches area.",
     "Repetition": "10-12",
@@ -54,6 +60,7 @@
     "ImagePath": "Resources/Images/ex_6.png"
   },
   {
+    "Id": 7,
     "Name": "Spider plank on the elbows",
     "Desciprion": "Plank is a super-effective exercise for all muscle groups. In this version of the exercise, there is an emphasis on the waist and sides, as well as the lower abs and hips. In static, the arms, shoulders, and back will work.",
     "Repetition": "16-18",

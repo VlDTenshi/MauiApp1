@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.AddExercisePage"
              Title="AddExercisePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout Padding="20">
+        <Label Text="Name" />
+        <Entry Text="{Binding ExerciseName}" Placeholder="Enter exercise name" />
+
+        <Label Text="Description" />
+        <Entry Text="{Binding ExerciseDescription}" Placeholder="Enter exercise description" />
+
+        <Label Text="Repetitions" />
+        <Entry Text="{Binding ExerciseRepetition}" Placeholder="Enter repetitions" />
+
+        <!-- Кнопка для сохранения нового упражнения -->
+        <Button Text="Save"
+                Command="{Binding SaveCommand}" />
+    </StackLayout>
 </ContentPage>
