@@ -24,6 +24,14 @@ namespace MauiApp1.Services
 
             //this.httpClient = new HttpClient();
         }
+
+        public int GetId()
+        {
+            if(exerciseList.Count == 0) 
+                return 1;
+
+            return exerciseList.Max(e => e.Id) +1;
+        }
         public async Task<List<Exercise>> GetExercise(bool forceReload = false)
         {
             if(exerciseList.Count > 0 && !forceReload) 

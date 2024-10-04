@@ -38,9 +38,12 @@ namespace MauiApp1.ViewModels
                 return;
             }
 
+            var nextId = exerciseService.GetId();
+
             // Создаем новое упражнение
             var newExercise = new Exercise
             {
+                Id= nextId,
                 Name = ExerciseName,
                 Description = ExerciseDescription,
                 Repetition = ExerciseRepetition
