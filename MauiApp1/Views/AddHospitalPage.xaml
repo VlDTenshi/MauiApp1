@@ -6,36 +6,57 @@
              x:Class="MauiApp1.Views.AddHospitalPage"
              BackgroundColor="Bisque">
     <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="20">
+        <VerticalStackLayout Padding="20" Spacing="25">
         <Label 
         Text="Add New Hospital"
         FontAttributes="Bold"
         FontSize="Large"
         HorizontalOptions="Center" />
 
-        <Frame BackgroundColor="Transparent">
-            <Entry Text="{Binding Name}" Placeholder="Enter hospital name" />
+        <Frame BackgroundColor="WhiteSmoke"
+                CornerRadius="10"
+                Padding="12"
+                HasShadow="True">
+                <Entry Text="{Binding Name}" Placeholder="Enter hospital name" 
+                    FontSize="16"
+                    TextColor="Black"
+                    PlaceholderColor="Gray"
+                />
         </Frame>
 
-        <Frame BackgroundColor="Transparent">
-            <Entry Text="{Binding Address}" Placeholder="Enter address" />
+        <Frame BackgroundColor="WhiteSmoke"
+                CornerRadius="10"
+                Padding="12"
+                HasShadow="True">
+            <Entry Text="{Binding Address}" Placeholder="Enter address" 
+                   FontSize="16"
+                   TextColor="Black"
+                   PlaceholderColor="Gray"/>
         </Frame>
 
-        <Frame BackgroundColor="Transparent">
-            <Editor Text="{Binding Description}" Placeholder="Enter hospital description" HeightRequest="100" />
+        <Frame BackgroundColor="WhiteSmoke"
+               CornerRadius="10"
+               Padding="12"
+               HasShadow="True">
+            <Editor Text="{Binding Description}" Placeholder="Enter hospital description" HeightRequest="100" 
+                    FontSize="16"
+                    TextColor="Black"
+                    PlaceholderColor="Gray"/>
         </Frame>
 
 
         <Frame BackgroundColor="Transparent"
            CornerRadius="10"
-           HasShadow="False" 
+           HasShadow="True" 
            Padding="10"
            HorizontalOptions="Center"
-           VerticalOptions="Center">
+           VerticalOptions="Center"
+               HeightRequest="220"
+               WidthRequest="220">
             <Image Source="{Binding ImagePath}" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" />
         </Frame>
 
-        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="0,10,0,0">
             <Button Text="Pick Image" Command="{Binding PickImageCommand}" 
             FontSize="16"
             BackgroundColor="#007aff"
@@ -44,10 +65,9 @@
             HeightRequest="50"
             WidthRequest="150"
             Padding="10"
-            Margin="0,2,0,0"
-            HorizontalOptions="FillAndExpand"/>
+            HorizontalOptions="Center"/>
 
-            <!-- Кнопка сохранения медикамента -->
+           
             <Button Text="Save Hospital" Command="{Binding SaveHospitalCommand}" 
             FontSize="16"
             BackgroundColor="#4CAF50"
@@ -56,22 +76,21 @@
             HeightRequest="50"
             WidthRequest="150"
             Padding="10"
-            Margin="0,2,0,0"
-            HorizontalOptions="FillAndExpand"/>
+            HorizontalOptions="Center"/>
         </HorizontalStackLayout>
 
-        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="0,15,0,0">
+        
             <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Cancel"
             FontSize="16"
-            BackgroundColor="Black"
+            BackgroundColor="DarkGray"
             TextColor="White"
             CornerRadius="8"
             HeightRequest="50"
             WidthRequest="130"
             Padding="10"
             Margin="0,2,0,0"
-            HorizontalOptions="FillAndExpand"/>
-        </HorizontalStackLayout>
+            HorizontalOptions="Center"/>
+        
     </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

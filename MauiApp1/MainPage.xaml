@@ -28,14 +28,14 @@
         <VerticalStackLayout Grid.Row="1"
                              Spacing="20"
                              HorizontalOptions="Center">
-            <Button Text="SignUp" Clicked="SignUp_Clicked"
+            <Button Text="SignUp" 
                     BackgroundColor="{StaticResource Primary}"
                     TextColor="White"
                     FontSize="18"
                     CornerRadius="25"
                     HeightRequest="50"
                     WidthRequest="250"/>
-            <Button Text="SignIn" Clicked="SignIn_Clicked"
+            <Button Text="SignIn" 
                     BackgroundColor="{StaticResource Primary}"
                     TextColor="White"
                     FontSize="18"
@@ -53,42 +53,5 @@
                     Clicked="Without_log_Clicked" />
         </VerticalStackLayout>
     </Grid>
-
-    <!--<ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="loading_image_1.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="Caduceus" />
-
-            <Label
-                Text="Hello, Visiter!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
-            <Label
-                Text="Welcome to App for tracking your health"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to App for tracking your health" />
-
-            <Button
-                Text="Next"
-                Clicked="Button_Clicked"
-                HorizontalOptions="Fill"/>
-            <Button
-                Text="Check internet connection"
-                Clicked="Button_Clicked_1"
-                HorizontalOptions="Fill"/>
-            <Button
-                Text="Medicines"
-                Clicked="Button_Clicked_2"
-                HorizontalOptions="Fill"/>
-        </VerticalStackLayout>
-    </ScrollView>-->
-    
 
 </ContentPage>

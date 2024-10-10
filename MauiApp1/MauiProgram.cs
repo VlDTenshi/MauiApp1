@@ -20,6 +20,8 @@ namespace MauiApp1
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            //Adding additional Services( including MVVM patterns )
+
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "medicines.db3");
             string contactPath = Path.Combine(FileSystem.AppDataDirectory, "contacts.db3");
             string exercisePath = Path.Combine(FileSystem.AppDataDirectory, "exercises.db3");
@@ -65,21 +67,7 @@ namespace MauiApp1
             builder.Services.AddTransient<ContactViewModel>();
             builder.Services.AddTransient<AddContactViewModel>();
             builder.Services.AddTransient<EditContactViewModel>();
-
-
-
-
-
-
-
-            //builder.Services.AddSingleton<LoginPage>();
-
-            //builder.Services.AddSingleton<LoginPageViewModel>();
-
-            //builder.Services.AddSingleton<IConnectivity>(Connectivity.Current);
-            //builder.Services.AddSingleton<IGeolocation>(Geolocation.Default);
-            //builder.Services.AddSingleton<IMap>(Map.Default);
-
+           
 
 
 #if DEBUG

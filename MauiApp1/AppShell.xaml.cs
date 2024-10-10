@@ -10,10 +10,6 @@ namespace MauiApp1
 
             Routing.RegisterRoute(nameof(HomeNavigationPage), typeof(HomeNavigationPage));
 
-            Routing.RegisterRoute(nameof(GreetingPage), typeof(GreetingPage));
-
-            Routing.RegisterRoute(nameof(InformationPage), typeof(InformationPage));
-
             Routing.RegisterRoute(nameof(MedicinesPage), typeof(MedicinesPage));
             Routing.RegisterRoute(nameof(EditMedicinePage), typeof(EditMedicinePage));
             Routing.RegisterRoute(nameof(AddMedicinePage), typeof(AddMedicinePage));

@@ -56,7 +56,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Services\ILoginRepository.cs" />
+	  <Compile Remove="Services\LoginService.cs" />
 	  <Compile Remove="ViewModels\LoginPageViewModel.cs" />
+	  <Compile Remove="Views\GreetingPage.xaml.cs" />
+	  <Compile Remove="Views\InformationPage.cs" />
+	  <Compile Remove="Views\LoginPage.xaml.cs" />
+	  <Compile Remove="Views\RegistrationPage.xaml.cs" />
+	  <Compile Remove="Views\SignInPage.xaml.cs" />
+	  <Compile Remove="Views\SignUpPage.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Views\GreetingPage.xaml" />
+	  <MauiXaml Remove="Views\LoginPage.xaml" />
+	  <MauiXaml Remove="Views\RegistrationPage.xaml" />
+	  <MauiXaml Remove="Views\SignInPage.xaml" />
+	  <MauiXaml Remove="Views\SignUpPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -119,9 +135,6 @@
 	  <MauiXaml Update="Views\ExercisesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\GreetingPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\HomeNavigationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -131,19 +144,7 @@
 	  <MauiXaml Update="Views\LoadingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\MedicinesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\RegistrationPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SignInPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\SignUpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
