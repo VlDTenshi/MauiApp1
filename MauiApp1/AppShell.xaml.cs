@@ -21,6 +21,7 @@ namespace MauiApp1
             Routing.RegisterRoute(nameof(ContactsPage), typeof(ContactsPage));
             Routing.RegisterRoute(nameof(AddContactPage), typeof(AddContactPage));
             Routing.RegisterRoute(nameof(EditContactPage), typeof(EditContactPage));
+            
 
             Routing.RegisterRoute(nameof(HospitalsPage), typeof(HospitalsPage));
             Routing.RegisterRoute(nameof(AddHospitalPage), typeof(AddHospitalPage));
@@ -29,7 +30,7 @@ namespace MauiApp1
             Routing.RegisterRoute(nameof(ExercisesPage), typeof(ExercisesPage));
             Routing.RegisterRoute(nameof(AddExercisePage), typeof(AddExercisePage));
             Routing.RegisterRoute(nameof(EditExercisePage), typeof(EditExercisePage));
-            Routing.RegisterRoute(nameof(ExerciseDetailsPage), typeof(ExerciseDetailsPage));
+            
         }
 
         private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)

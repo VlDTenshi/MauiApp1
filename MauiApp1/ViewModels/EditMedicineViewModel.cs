@@ -7,50 +7,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Windows.Input;
 
 namespace MauiApp1.ViewModels
 {
-    [QueryProperty(nameof(Exercise), "Exercise")]
-    public partial class EditExerciseViewModel : ObservableObject
+    [QueryProperty(nameof(Medicine), "Medicine")]
+    public partial class EditMedicineViewModel : ObservableObject
     {
-
-        private readonly ExerciseService _exerciseService;
+        private readonly MedicineService _medicineService;
 
         [ObservableProperty]
-        private Exercise exercise;
+        private Medicine medicine;
         [ObservableProperty]
         private string name;
         [ObservableProperty]
         private string description;
         [ObservableProperty]
-        private string repetition;
-        [ObservableProperty]
         private string imagePath;
 
-        public ICommand SaveExerciseCommand { get; }
+        public ICommand SaveMedicineCommand { get; }
         public ICommand PickImageCommand { get; }
-        public ICommand DeleteExerciseCommand { get; }
+        public ICommand DeleteMedicineCommand { get; }
 
-        public EditExerciseViewModel(ExerciseService exerciseService)
+        public EditMedicineViewModel(MedicineService medicineService)
         {
-            _exerciseService = exerciseService;
-            SaveExerciseCommand = new AsyncRelayCommand(SaveExerciseAsync);
+            _medicineService = medicineService;
+            //_medicineService.MedicinesChanged += OnMedicineChanged;
+            SaveMedicineCommand = new AsyncRelayCommand(SaveMedicineAsync);
             PickImageCommand = new AsyncRelayCommand(PickImageAsync);
-            DeleteExerciseCommand = new AsyncRelayCommand(DeleteExerciseAsync);
+            DeleteMedicineCommand = new AsyncRelayCommand(DeleteMedicineAsync);
         }
-        partial void OnExerciseChanged(Exercise value)
+        partial void OnMedicineChanged(Medicine value)
         {
             if (value != null)
             {
                 Name = value.Name;
                 Description = value.Description;
-                repetition = value.Repetition;
                 ImagePath = value.ImagePath;
             }
         }
-        private async Task SaveExerciseAsync()
+        private async Task SaveMedicineAsync()
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Description))
             {
@@ -58,12 +54,11 @@ namespace MauiApp1.ViewModels
                 return;
             }
 
-            Exercise.Name = Name;
-            Exercise.Description = Description;
-            Exercise.Repetition = Repetition;
-            Exercise.ImagePath = ImagePath;
+            Medicine.Name = Name;
+            Medicine.Description = Description;
+            Medicine.ImagePath = ImagePath;
 
-            await _exerciseService.SaveExerciseAsync(Exercise);
+            await _medicineService.SaveMedicineAsync(Medicine);
 
             await Shell.Current.GoToAsync("..");
         }
@@ -91,7 +86,7 @@ namespace MauiApp1.ViewModels
                 await Shell.Current.DisplayAlert("Error", $"Unable to pick image: {ex.Message}", "OK");
             }
         }
-        private async Task DeleteExerciseAsync()
+        private async Task DeleteMedicineAsync()
         {
             // Подтверждение удаления
             bool confirm = await Shell.Current.DisplayAlert("Confirm", "Are you sure you want to delete this medicine?", "Yes", "No");
@@ -99,7 +94,7 @@ namespace MauiApp1.ViewModels
             {
 
                 // Удаление объекта Medicine
-                await _exerciseService.DeleteExerciseAsync(Exercise);
+                await _medicineService.DeleteMedicineAsync(Medicine);
 
                 // Переход обратно к списку медикаментов
                 await Shell.Current.GoToAsync("..");

@@ -1,13 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModels"
+             x:DataType="viewmodel:AddMedicineViewModel"
              x:Class="MauiApp1.Views.AddMedicinePage"
-             Title="Add Medicine">
-    <VerticalStackLayout>
+             
+             BackgroundColor="Bisque">
+ 
+        <VerticalStackLayout Padding="10" Spacing="20">
         <Label 
-            Text="Adding Medicines!"
-            VerticalOptions="Center" 
+            Text="Add New Medicine"
+            FontAttributes="Bold"
+            FontSize="Large"
             HorizontalOptions="Center" />
-        <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Cancel"/>
+
+        <Frame BackgroundColor="Transparent">
+            <Entry Text="{Binding Name}" Placeholder="Enter medicine name" />
+        </Frame>
+
+
+        <Frame BackgroundColor="Transparent">
+            <Editor Text="{Binding Description}" Placeholder="Enter medicine description" HeightRequest="100" />
+        </Frame>
+
+
+        <Frame BackgroundColor="Transparent"
+               CornerRadius="10"
+               HasShadow="False" 
+               Padding="10"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+            <Image Source="{Binding ImagePath}" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" />
+        </Frame>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <Button Text="Pick Image" Command="{Binding PickImageCommand}" 
+                FontSize="16"
+                BackgroundColor="#007aff"
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="150"
+                Padding="10"
+                Margin="0,2,0,0"
+                HorizontalOptions="FillAndExpand"/>
+        
+        <!-- Кнопка сохранения медикамента -->
+        <Button Text="Save Medicine" Command="{Binding SaveMedicineCommand}" 
+                FontSize="16"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="150"
+                Padding="10"
+                Margin="0,2,0,0"
+                HorizontalOptions="FillAndExpand"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="0,15,0,0">
+            <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Cancel"
+                FontSize="16"
+                BackgroundColor="Black"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="50"
+                WidthRequest="130"
+                Padding="10"
+                Margin="0,2,0,0"
+                HorizontalOptions="FillAndExpand"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
+ 
 </ContentPage>

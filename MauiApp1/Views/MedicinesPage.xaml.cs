@@ -1,34 +1,34 @@
+#if ANDROID
+using AndroidX.Lifecycle;
+#endif
+using MauiApp1.Services;
 using MauiApp1.ViewModels;
 
 namespace MauiApp1.Views;
 
 public partial class MedicinesPage : ContentPage
 {
-	public MedicinesPage()
+    private readonly MedicineViewModel _medicineViewModel;
+	public MedicinesPage(MedicineViewModel medicineViewModel)
 	{
 		InitializeComponent();
-        BindingContext = new MedicineViewModel();
-        //List<string> medicines = new List<string>() { 
-        //    "Aspirin",
-        //    "Ampril",
-        //    "Analgin",
-        //    "Vizin"
-        //};
-        //listMedicines.ItemsSource = medicines; 
+        BindingContext = medicineViewModel;
+        _medicineViewModel = medicineViewModel;
+     
     }
 
-    private void btnEditMedicine_Clicked(object sender, EventArgs e)
+    protected override void OnAppearing()
     {
-        Shell.Current.GoToAsync(nameof(EditMedicinePage));
-    }
-
-    private void btnAddMedicine_Clicked(object sender, EventArgs e)
-    {
-        Shell.Current.GoToAsync(nameof(AddMedicinePage));
+        base.OnAppearing();
+        if (_medicineViewModel.Medicines == null || !_medicineViewModel.Medicines.Any()) // Загрузка, если список пустой
+        {
+            _medicineViewModel.LoadMedicinesCommand.Execute(null);
+        }
     }
 
     private async void backButton_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("..");
     }
+
 }

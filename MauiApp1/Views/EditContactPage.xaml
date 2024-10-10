@@ -2,14 +2,102 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:controls="clr-namespace:MauiApp1.Views.Controls"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.EditContactPage"
-             Title="Edit Contact">
+             x:DataType="viewmodel:EditContactViewModel"
+             Title="Edit Contact"
+             BackgroundColor="Bisque">
 
-    <controls:ContactControler x:Name="contactCntrl"
-                               OnSave="btnUpdate_Clicked"
-                               OnCancel="btnCancel_Clicked"
-                               OnError="contactCntrl_OnError">
-        
-    </controls:ContactControler>
+    <VerticalStackLayout Spacing="20" Padding="10">
+        <Frame CornerRadius="10" BackgroundColor="Transparent">
+            <Entry Text="{Binding Name}" Placeholder="Enter contact name" 
+               FontSize="18" 
+               BackgroundColor="Transparent"
+               TextColor="#333"
+               PlaceholderColor="#999"
+               Margin="0,10,0,0"
+               HeightRequest="50"
+               HorizontalOptions="FillAndExpand"
+               />
+        </Frame>
+        <Frame CornerRadius="10" BackgroundColor="Transparent">
+            <Entry Text="{Binding Address}" Placeholder="Enter address" 
+           FontSize="18" 
+           BackgroundColor="Transparent"
+           TextColor="#333"
+           PlaceholderColor="#999"
+           Margin="0,10,0,0"
+           HeightRequest="50"
+           HorizontalOptions="FillAndExpand"
+           />
+        </Frame>
+        <Frame CornerRadius="10" BackgroundColor="Transparent">
+                <Entry Text="{Binding Email}" Placeholder="Enter email" 
+           FontSize="18" 
+           BackgroundColor="Transparent"
+           TextColor="#333"
+           PlaceholderColor="#999"
+           Margin="0,10,0,0"
+           HeightRequest="50"
+           HorizontalOptions="FillAndExpand"
+       />
+        </Frame>
+        <Frame CornerRadius="10" BackgroundColor="Transparent">
+                <Entry Text="{Binding Phone}" Placeholder="Enter phone" 
+           FontSize="18" 
+           BackgroundColor="Transparent"
+           TextColor="#333"
+           PlaceholderColor="#999"
+           Margin="0,10,0,0"
+           HeightRequest="50"
+           HorizontalOptions="FillAndExpand"
+       />
+        </Frame>
+        <!--<Frame BorderColor="Transparent" 
+               BackgroundColor="Transparent"
+               CornerRadius="10"
+               HasShadow="False" 
+               Padding="10"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+            <Image Source="{Binding ImagePath}" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" />
+        </Frame>-->
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <!--<Button Text="Change Image" Command="{Binding PickImageCommand}" 
+                FontSize="16"
+                BackgroundColor="#007aff"
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="175"
+                Padding="10"
+                Margin="0,2,0,0"
+                HorizontalOptions="FillAndExpand"/>-->
+
+            <Button Text="Save Changes" Command="{Binding SaveContactCommand}" 
+                FontSize="16"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="150"
+                Padding="10"
+                Margin="0,2,0,0"
+                HorizontalOptions="FillAndExpand"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="0,15,0,0">
+            <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Cancel"
+                FontSize="16"
+                BackgroundColor="Black"
+                TextColor="White"
+                CornerRadius="8"
+                HeightRequest="50"
+                WidthRequest="130"
+                Padding="10"
+                Margin="0,2,0,0"
+                HorizontalOptions="FillAndExpand"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

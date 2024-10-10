@@ -1,43 +1,43 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Models;
-using MauiApp1.Services;
-using SkiaSharp;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MauiApp1.Services;
 
 namespace MauiApp1.ViewModels
 {
-    public partial class AddExerciseViewModel : ObservableObject
+    public partial class AddHospitalViewModel:ObservableObject
     {
-        private readonly ExerciseService _exerciseService;
+
+        private readonly HospitalService _hospitalService;
 
         [ObservableProperty]
         private string name;
+
         [ObservableProperty]
         private string description;
+
+        [ObservableProperty]
+        private string address;
+
         [ObservableProperty]
         private string imagePath;
-        [ObservableProperty]
-        private string repetition;
 
-
-        public ICommand SaveExerciseCommand { get; }
+        public ICommand SaveHospitalCommand { get; }
         public ICommand PickImageCommand { get; }
 
-        public AddExerciseViewModel(ExerciseService exerciseService)
+        public AddHospitalViewModel(HospitalService hospitalService)
         {
-            _exerciseService = exerciseService;
-            SaveExerciseCommand = new AsyncRelayCommand(SaveExerciseAsync);
+            _hospitalService = hospitalService;
+            SaveHospitalCommand = new AsyncRelayCommand(SaveHospitalAsync);
             PickImageCommand = new AsyncRelayCommand(PickImageAsync);
         }
 
-        private async Task SaveExerciseAsync()
+        private async Task SaveHospitalAsync()
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Description))
             {
@@ -45,15 +45,15 @@ namespace MauiApp1.ViewModels
                 return;
             }
 
-            var newExercise = new Exercise
+            var newHospital = new Hospital
             {
                 Name = Name,
                 Description = Description,
-                Repetition = Repetition,
+                Address = Address,
                 ImagePath = ImagePath
             };
 
-            await _exerciseService.SaveExerciseAsync(newExercise);
+            await _hospitalService.SaveHospitalAsync(newHospital);
 
             // Переход назад к странице с перечнем медикаментов
             await Shell.Current.GoToAsync("..");

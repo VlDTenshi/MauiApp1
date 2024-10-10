@@ -1,56 +1,82 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model ="clr-namespace:MauiApp1.Models"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModels"
+             xmlns:controls="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MauiApp1.Views.HospitalsPage"
-             Title="Hospitals"
+             x:DataType="viewmodel:HospitalViewModel"
              BackgroundColor="Bisque">
-    <CollectionView ItemsSource="{Binding Hospitals}">
-        <CollectionView.Header>
-            <Frame BackgroundColor="Black">
-                <Label Text="HOSPITALS"
+    <Grid RowDefinitions="*,Auto,Auto">
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Hospitals}">
+            <CollectionView.Header>
+                <Frame BackgroundColor="Black">
+                    <Label Text="HOSPITALS"
                        FontFamily="OpenSans-Regular.ttf"
                        FontAttributes="Bold"
                        FontSize="Title"
                        HorizontalOptions="Center"
-                       TextColor="YellowGreen"/>
-            </Frame>
-        </CollectionView.Header>
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical" Span="2"/>
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame Margin="20"
+                       TextColor="Gold"/>
+                </Frame>
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Hospital">
+                    <Frame CornerRadius="20" Margin="5"
                            HeightRequest="250"
-                           WidthRequest="250">
-                    <VerticalStackLayout>
-                        <Image Source="{Binding Image}"/>
-                        <Label Text="{Binding Name}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HasShadow="True">
+                        <StackLayout>
+                            <Image Source="{Binding ImagePath}"
+                                   Aspect="Fill"
+                                   HeightRequest="150"
+                                   WidthRequest="150"
+                                   HorizontalOptions="Center"/>
+                            <Label Text="{Binding Name}"
                                    FontFamily="OpenSans-Regular.ttf"
-                                   FontSize="Large"
+                                   FontAttributes="Bold"
+                                   FontSize="Small"
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center"/>
-                    </VerticalStackLayout>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-        <CollectionView.Footer>
-            <Frame VerticalOptions="End" Margin="0,500,0,10" BackgroundColor="Bisque">
-                <VerticalStackLayout Spacing="5">
-                    <Button x:Name="btnEditHospital" Clicked="btnEditHospital_Clicked"  Text="Edit Hospital" 
-                            BackgroundColor="{StaticResource Primary}"
-                            WidthRequest="130"
-                            CornerRadius="25"/>
-                    <Button x:Name="btnAddHospital" Clicked="btnAddHospital_Clicked"  Text="Add Hospital"
-                            BackgroundColor="{StaticResource Primary}"
-                            WidthRequest="130"
-                            CornerRadius="25"/>
-                    <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
-                            BackgroundColor="Black"
-                            WidthRequest="100"
-                            CornerRadius="25"/>
-                </VerticalStackLayout>
-            </Frame>
-        </CollectionView.Footer>
-    </CollectionView>
+                            <Label Text="{Binding Address}" FontSize="Small"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HospitalViewModel}},Path=GoToEditHospitalCommand}"
+                                              CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,10">
+
+            <Button Text="Add Medicine"  
+        Command="{Binding AddNewHospitalCommand}"
+        WidthRequest="130"
+        BackgroundColor="{StaticResource Primary}"
+        CornerRadius="25"
+        Margin="0,0,10,0"/>
+
+            <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
+        WidthRequest="100"
+        BackgroundColor="Black"
+        CornerRadius="25"/>
+        </StackLayout>
+
+        <Frame Grid.Row="2" BackgroundColor="Black">
+            <Label Text="NoteBook"
+        FontFamily="OpenSans-Regular.ttf"
+        FontAttributes="Bold"
+        FontSize="Title"
+        HorizontalOptions="Center"
+        TextColor="Gold"/>
+        </Frame>
+    </Grid>
 </ContentPage>

@@ -60,6 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\delete_icon.png" />
 	  <None Remove="Resources\Images\exit.png" />
 	  <None Remove="Resources\Images\ex_1.png" />
 	  <None Remove="Resources\Images\ex_2.png" />
@@ -71,8 +72,6 @@
 	  <None Remove="Resources\Images\loading_image.png" />
 	  <None Remove="Resources\Images\loading_image_1.png" />
 	  <None Remove="Resources\Images\lock.png" />
-	  <None Remove="Resources\Raw\exercisedata.json" />
-	  <None Remove="Resources\Raw\hospitaldata.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,10 +81,8 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.80" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\MauiApp1.Shared\MauiApp1.Shared.csproj" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.8" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -107,9 +104,6 @@
 	  <MauiXaml Update="Views\ContactsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Controls\ContactControler.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\EditContactPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -120,9 +114,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\EditMedicinePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ExerciseDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ExercisesPage.xaml">

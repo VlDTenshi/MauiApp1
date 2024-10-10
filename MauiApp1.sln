@@ -5,10 +5,6 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiApp1", "MauiApp1\MauiApp1.csproj", "{EDCB02FF-2C47-4DC8-B723-971902AF25C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1.Api", "MauiApp1.Api\MauiApp1.Api.csproj", "{F04F4FA2-DA46-447B-AE6D-1840E868FB1B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1.Shared", "MauiApp1.Shared\MauiApp1.Shared.csproj", "{33BD4754-66E7-4398-BD7F-82FFC4B436E8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,14 +17,6 @@ Global
 		{EDCB02FF-2C47-4DC8-B723-971902AF25C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDCB02FF-2C47-4DC8-B723-971902AF25C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDCB02FF-2C47-4DC8-B723-971902AF25C8}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{F04F4FA2-DA46-447B-AE6D-1840E868FB1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F04F4FA2-DA46-447B-AE6D-1840E868FB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F04F4FA2-DA46-447B-AE6D-1840E868FB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F04F4FA2-DA46-447B-AE6D-1840E868FB1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33BD4754-66E7-4398-BD7F-82FFC4B436E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33BD4754-66E7-4398-BD7F-82FFC4B436E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33BD4754-66E7-4398-BD7F-82FFC4B436E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33BD4754-66E7-4398-BD7F-82FFC4B436E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

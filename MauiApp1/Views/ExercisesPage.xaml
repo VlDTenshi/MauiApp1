@@ -4,9 +4,9 @@
              xmlns:model ="clr-namespace:MauiApp1.Models"
              xmlns:viewmodel="clr-namespace:MauiApp1.ViewModels"
              xmlns:controls="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewmodel:ExerciseViewModel"
              x:Class="MauiApp1.Views.ExercisesPage"
-             Title="{Binding Title}"
              BackgroundColor="Bisque">
     <Grid
         ColumnDefinitions="*,*"
@@ -16,13 +16,30 @@
         <CollectionView ItemsSource="{Binding Exercises}"
                         SelectionMode="Single"
                         Grid.ColumnSpan="2">
+            <CollectionView.Header>
+                <Frame BackgroundColor="Black">
+                    <Label Text="EXERCISES"
+               FontFamily="OpenSans-Regular.ttf"
+               FontAttributes="Bold"
+               FontSize="Title"
+               HorizontalOptions="Center"
+               TextColor="Gold"/>
+                </Frame>
+            </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Exercise">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Reveal">
+                                <SwipeItem
+                Text="Delete"
+                BackgroundColor="Red"
+                Command="{Binding Path=BindingContext.DeleteExerciseCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
                     <Grid Padding="10">
                         <Frame HeightRequest="125">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                            </Frame.GestureRecognizers>
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFit" Source="{Binding ImagePath}"
                                        WidthRequest="125"
@@ -34,45 +51,38 @@
                                     <Label Text="{Binding Name}"/>
                                 </StackLayout>
                             </Grid>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ExerciseViewModel}},Path=GoToEditExerciseCommand}"
+                              CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
                         </Frame>
                     </Grid>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="Get Exercises"
-                Command="{Binding GetExercisesCommand}"
-                IsEnabled="{Binding IsNotBusy}"
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                HorizontalOptions="Center"
-                HeightRequest="40"
-                WidthRequest="130"
-                CornerRadius="25"
-                Margin="0,10,0,0"/>
+        <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,10">
 
-        <Button x:Name="btnAddExercise" Command="{Binding AddExerciseCommand}"  Text="Add Exercise"                
-                Grid.Row="2"
-                Grid.ColumnSpan="2"
-                BackgroundColor="{StaticResource Primary}"
-                HeightRequest="40"
-                WidthRequest="130"
-                CornerRadius="25"
-                HorizontalOptions="Center"
-                Margin="0,10,0,0"/>
-        <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
-                Grid.Row="3"
-                Grid.ColumnSpan="2"
-                BackgroundColor="Black"
-                HeightRequest="40"
-                WidthRequest="100"
-                CornerRadius="25"
-                Margin="0,10,0,5"
-                HorizontalOptions="Center"/>
-        <ActivityIndicator IsVisible="{Binding IsBusy}"
-                           IsRunning="{Binding IsBusy}"
-                           HorizontalOptions="FillAndExpand"
-                           VerticalOptions="CenterAndExpand"
-                           Grid.RowSpan="2"
-                           Grid.ColumnSpan="2"/>
+            <Button Text="Add Exercise"
+             Command="{Binding AddNewExerciseCommand}"
+             WidthRequest="130"
+             BackgroundColor="{StaticResource Primary}"
+             CornerRadius="25"
+             Margin="0,0,10,0"/>
+
+             <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
+             WidthRequest="100"
+             BackgroundColor="Black"
+             CornerRadius="25"/>
+        </StackLayout>
+
+        <Frame Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Black">
+            <Label Text="NoteBook"
+             FontFamily="OpenSans-Regular.ttf"
+             FontAttributes="Bold"
+             FontSize="Title"
+             HorizontalOptions="Center"
+             TextColor="Gold"/>
+        </Frame>
     </Grid>
 </ContentPage>

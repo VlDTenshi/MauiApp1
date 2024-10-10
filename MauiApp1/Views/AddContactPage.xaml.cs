@@ -1,32 +1,21 @@
-using MauiApp1.Models;
+
+using MauiApp1.ViewModels;
 
 namespace MauiApp1.Views;
 
 public partial class AddContactPage : ContentPage
 {
-	public AddContactPage()
-	{
-		InitializeComponent();
-	}
-
-    private void contactCntrl_OnSave(object sender, EventArgs e)
+    private readonly AddContactViewModel _addContactViewModel;
+    public AddContactPage(AddContactViewModel addContactViewModel)
     {
-        ContactRepository.AddContact(new Models.Contact
-        {
-            Name = contactCntrl.Name,
-            Address = contactCntrl.Address,
-            Email = contactCntrl.Email,
-            Phone = contactCntrl.Phone,
-        });
+        InitializeComponent();
+        BindingContext = addContactViewModel;
+        _addContactViewModel = addContactViewModel;
     }
 
-    private void contactCntrl_OnCancel(object sender, EventArgs e)
+    private void btnCancel_Clicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync($"//{nameof(ContactsPage)}");
-    }
-
-    private void contactCntrl_OnError(object sender, string e)
-    {
-        DisplayAlert("Error", e, "Ok");
+        Shell.Current.GoToAsync("..");
+        //Shell.Current.GoToAsync($"//{nameof(MedicinesPage)}");
     }
 }

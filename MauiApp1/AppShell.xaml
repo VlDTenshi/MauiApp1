@@ -47,13 +47,15 @@
         ContentTemplate="{DataTemplate local2:HomeNavigationPage}"
         Route="HomeNavigationPage" 
         />
-    <ShellContent
+    
+        <ShellContent
         Shell.NavBarIsVisible="True"
         Shell.FlyoutItemIsVisible="True"
         Title="Medicine"
         Icon="{x:Static models:Icons.Medicine}"
         ContentTemplate="{DataTemplate local2:MedicinesPage}"
         Route="MedicinesPage" />
+    
     <ShellContent
         Shell.NavBarIsVisible="True"
         Shell.FlyoutItemIsVisible="True"
@@ -61,14 +63,16 @@
         Icon="{x:Static models:Icons.Contact}"
         ContentTemplate="{DataTemplate local2:ContactsPage}"
         Route="ContactsPage" />
-    <ShellContent
+    
+        <ShellContent
         Shell.NavBarIsVisible="True"
         Shell.FlyoutItemIsVisible="True"
         Title="Hospital"
         Icon="{x:Static models:Icons.Hospital}"
         ContentTemplate="{DataTemplate local2:HospitalsPage}"
         Route="HospitalsPage" />
-    <ShellContent
+    
+        <ShellContent
         Shell.NavBarIsVisible="True"
         Shell.FlyoutItemIsVisible="True"
         Title="Exercise"
@@ -76,30 +80,11 @@
         ContentTemplate="{DataTemplate local2:ExercisesPage}"
         Route="ExercisesPage" />
     </FlyoutItem>
-    
-    <TabBar>
-        <ShellContent
-            Title="Health"
-            ContentTemplate="{DataTemplate local2:HomeNavigationPage}"
-            Route="HomeNavigationPage"
-            />
-        <ShellContent
-            Title="Medicine"
-            ContentTemplate="{DataTemplate local2:MedicinesPage}"
-            Route="MedicinesPage"/>
-        <ShellContent
-            Title="Contact"
-            ContentTemplate="{DataTemplate local2:ContactsPage}"
-            Route="ContactsPage"/>
-        <ShellContent
-            Title="Hospital"
-            ContentTemplate="{DataTemplate local2:HospitalsPage}"
-            Route="HospitalsPage"/>
-        <ShellContent
-            Title="Exercise"
-            ContentTemplate="{DataTemplate local2:ExercisesPage}"
-            Route="ExercisesPage"/>
-    </TabBar>
+
+    <ShellContent Route="AddExercisePage" ContentTemplate="{DataTemplate local2:AddExercisePage}"/>
+    <ShellContent Route="AddMedicinePage" ContentTemplate="{DataTemplate local2:AddMedicinePage}"/>
+    <ShellContent Route="EditMedicinePage" ContentTemplate="{DataTemplate local2:EditMedicinePage}"/>
+
 
     <MenuItem Text="Sign out"
               IconImageSource="exit"

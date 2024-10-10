@@ -1,70 +1,57 @@
 using MauiApp1.Models;
-using Contact = MauiApp1.Models.Contact;
+using ContactU = MauiApp1.Models.ContactU;
 using System.Collections.ObjectModel;
+using MauiApp1.ViewModels;
 
 namespace MauiApp1.Views;
 
 public partial class ContactsPage : ContentPage
 {
-	public ContactsPage()
+    private readonly ContactViewModel _contactViewModel;
+	public ContactsPage(ContactViewModel contactViewModel)
 	{
 		InitializeComponent();
+        BindingContext = contactViewModel;
+        _contactViewModel = contactViewModel;
 
 	}
     protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        SearchBar.Text = string.Empty;
-
-        LoadContacts();
-    }
-
-
-
-		private async void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-		{
-        if (listContacts.SelectedItem != null)
+        if (_contactViewModel.Contacts == null || !_contactViewModel.Contacts.Any()) // Загрузка, если список пустой
         {
-            //logic
-
-            await Shell.Current.GoToAsync($"{nameof(EditContactPage)}?Id={((Contact)listContacts.SelectedItem).ContactId}");
-
+            _contactViewModel.LoadContactsCommand.Execute(null);
         }
-        }
-	
 
-    private void listContacts_ItemTapped(object sender, ItemTappedEventArgs e)
-    {
-        listContacts.SelectedItem = null;
+
     }
+
+
+
+		
 
     private void btnAdd_Clicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync(nameof(AddContactPage));
     }
 
-    private void Delete_Clicked(object sender, EventArgs e)
-    {
-        var menuItem = sender as MenuItem;
-        var contact = menuItem.CommandParameter as Contact;
-        ContactRepository.DeleteContact(contact.ContactId);
+    //private void Delete_Clicked(object sender, EventArgs e)
+    //{
+    //    var menuItem = sender as MenuItem;
+    //    var contact = menuItem.CommandParameter as Contact;
+    //    ContactRepository.DeleteContact(contact.ContactId);
 
-        LoadContacts();
-    }
+    //    LoadContacts();
+    //}
 
-    private void LoadContacts()
-    {
-        var contacts = new ObservableCollection<Contact>(ContactRepository.GetContacts());
+    
 
-        listContacts.ItemsSource = contacts;
-    }
-
-    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        var contacts = new ObservableCollection<Contact>(ContactRepository.SearchContacts(((SearchBar)sender).Text));
-        listContacts.ItemsSource = contacts;
-    }
+    //private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    //{
+    //    var contacts = new ObservableCollection<Contact>(ContactRepository.SearchContacts(((SearchBar)sender).Text));
+    //    listContacts.ItemsSource = contacts;
+    //}
 
     private async void backButton_Clicked(object sender, EventArgs e)
     {

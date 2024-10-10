@@ -1,21 +1,79 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:MauiApp1.ViewModels"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModels"
+             x:DataType="viewmodel:AddExerciseViewModel"
              x:Class="MauiApp1.Views.AddExercisePage"
-             Title="AddExercisePage">
-    <StackLayout Padding="20">
-        <Label Text="Name" />
-        <Entry Text="{Binding ExerciseName}" Placeholder="Enter exercise name" />
+             
+             BackgroundColor="Bisque">
+    <ScrollView>
+        <VerticalStackLayout Padding="5" Spacing="20">
 
-        <Label Text="Description" />
-        <Entry Text="{Binding ExerciseDescription}" Placeholder="Enter exercise description" />
+        <Label 
+        Text="Add New Exercise"
+        FontAttributes="Bold"
+        FontSize="Large"
+        HorizontalOptions="Center" />
 
-        <Label Text="Repetitions" />
-        <Entry Text="{Binding ExerciseRepetition}" Placeholder="Enter repetitions" />
+        <Frame BackgroundColor="Transparent">
+            <Entry Text="{Binding Name}" Placeholder="Enter exercise name" />
+        </Frame>
 
-        <!-- Кнопка для сохранения нового упражнения -->
-        <Button Text="Save"
-                Command="{Binding SaveCommand}" />
-    </StackLayout>
+        <Frame BackgroundColor="Transparent">
+            <Entry Text="{Binding Repetition}" Placeholder="Enter repetition" />
+        </Frame>
+
+        <Frame BackgroundColor="Transparent">
+            <Editor Text="{Binding Description}" Placeholder="Enter exercise description" HeightRequest="100" />
+        </Frame>
+
+
+        <Frame BackgroundColor="Transparent"
+           CornerRadius="10"
+           HasShadow="False" 
+           Padding="10"
+           HorizontalOptions="Center"
+           VerticalOptions="Center">
+            <Image Source="{Binding ImagePath}" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" />
+        </Frame>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <Button Text="Pick Image" Command="{Binding PickImageCommand}" 
+            FontSize="16"
+            BackgroundColor="#007aff"
+            TextColor="White"
+            CornerRadius="25"
+            HeightRequest="50"
+            WidthRequest="150"
+            Padding="10"
+            Margin="0,2,0,0"
+            HorizontalOptions="FillAndExpand"/>
+
+            <!-- Кнопка сохранения медикамента -->
+            <Button Text="Save Medicine" Command="{Binding SaveExerciseCommand}" 
+            FontSize="16"
+            BackgroundColor="#4CAF50"
+            TextColor="White"
+            CornerRadius="25"
+            HeightRequest="50"
+            WidthRequest="150"
+            Padding="10"
+            Margin="0,2,0,0"
+            HorizontalOptions="FillAndExpand"/>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Padding="0,15,0,0">
+            <Button x:Name="btnCancel" Clicked="btnCancel_Clicked" Text="Cancel"
+            FontSize="16"
+            BackgroundColor="Black"
+            TextColor="White"
+            CornerRadius="8"
+            HeightRequest="50"
+            WidthRequest="130"
+            Padding="10"
+            Margin="0,2,0,0"
+            HorizontalOptions="FillAndExpand"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

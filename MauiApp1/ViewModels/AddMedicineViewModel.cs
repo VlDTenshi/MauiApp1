@@ -2,10 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Models;
 using MauiApp1.Services;
-using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,31 +11,30 @@ using System.Windows.Input;
 
 namespace MauiApp1.ViewModels
 {
-    public partial class AddExerciseViewModel : ObservableObject
+    public partial class AddMedicineViewModel : ObservableObject
     {
-        private readonly ExerciseService _exerciseService;
+        private readonly MedicineService _medicineService;
 
         [ObservableProperty]
         private string name;
+
         [ObservableProperty]
         private string description;
+
         [ObservableProperty]
         private string imagePath;
-        [ObservableProperty]
-        private string repetition;
 
-
-        public ICommand SaveExerciseCommand { get; }
+        public ICommand SaveMedicineCommand { get; }
         public ICommand PickImageCommand { get; }
 
-        public AddExerciseViewModel(ExerciseService exerciseService)
+        public AddMedicineViewModel(MedicineService medicineService)
         {
-            _exerciseService = exerciseService;
-            SaveExerciseCommand = new AsyncRelayCommand(SaveExerciseAsync);
+            _medicineService = medicineService;
+            SaveMedicineCommand = new AsyncRelayCommand(SaveMedicineAsync);
             PickImageCommand = new AsyncRelayCommand(PickImageAsync);
         }
 
-        private async Task SaveExerciseAsync()
+        private async Task SaveMedicineAsync()
         {
             if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Description))
             {
@@ -45,15 +42,14 @@ namespace MauiApp1.ViewModels
                 return;
             }
 
-            var newExercise = new Exercise
+            var newMedicine = new Medicine
             {
                 Name = Name,
                 Description = Description,
-                Repetition = Repetition,
                 ImagePath = ImagePath
             };
 
-            await _exerciseService.SaveExerciseAsync(newExercise);
+            await _medicineService.SaveMedicineAsync(newMedicine);
 
             // Переход назад к странице с перечнем медикаментов
             await Shell.Current.GoToAsync("..");

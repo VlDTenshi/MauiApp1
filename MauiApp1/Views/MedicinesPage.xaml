@@ -1,60 +1,82 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model ="clr-namespace:MauiApp1.Models"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModels"
+             xmlns:controls="clr-namespace:Microsoft.Maui.Controls;assembly=Microsoft.Maui.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="MauiApp1.Views.MedicinesPage"
-             Title="Medicines"
+             x:DataType="viewmodel:MedicineViewModel"
              BackgroundColor="Bisque">
-    <VerticalStackLayout Spacing="5">
-        <Label 
-            Text="Here is all about medicines!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <!--<ListView x:Name="listMedicines" BackgroundColor="Transparent"
-                  SeparatorColor="Aqua"
-                  >
-            
-        </ListView>-->
-        <CarouselView ItemsSource="{Binding Medicines}"
-                      ItemTemplate="{StaticResource MedicineCarouselDictionary}">
-            <!--<CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Frame CornerRadius="5" Margin="5"
+    <Grid RowDefinitions="*,Auto,Auto">
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Medicines}">
+            <CollectionView.Header>
+                <Frame BackgroundColor="Black">
+                    <Label Text="MEDICINES"
+                           FontFamily="OpenSans-Regular.ttf"
+                           FontAttributes="Bold"
+                           FontSize="Title"
+                           HorizontalOptions="Center"
+                           TextColor="Gold"/>
+                </Frame>
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="2"/>
+        </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Medicine">
+                    <Frame CornerRadius="20" Margin="5"
                                HeightRequest="250"
                                HorizontalOptions="Center"
                                VerticalOptions="CenterAndExpand"
                                HasShadow="True">
-                            <StackLayout>
-                                <Label Text="{Binding Name}"
-                                       FontFamily="OpenSans-Regular.ttf"
-                                       FontAttributes="Bold"
-                                       FontSize="Large"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center"/>
-                                <Image Source="{Binding Image}"
+                        <StackLayout>
+                            <Image Source="{Binding ImagePath}"
                                        Aspect="Fill"
                                        HeightRequest="150"
                                        WidthRequest="150"
                                        HorizontalOptions="Center"/>
-                            </StackLayout>
-                        </Frame>
-                    </StackLayout>
+                            <Label Text="{Binding Name}"
+                                       FontFamily="OpenSans-Regular.ttf"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+                            <Label Text="{Binding Description}" FontSize="Small"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MedicineViewModel}},Path=GoToEditMedicineCommand}"
+                                                  CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
                 </DataTemplate>
-            </CarouselView.ItemTemplate>-->
-        </CarouselView>
-        <Button x:Name="btnEditMedicine" Clicked="btnEditMedicine_Clicked" Text="Edit Medicine" 
-                WidthRequest="130"
-                BackgroundColor="{StaticResource Primary}"
-                CornerRadius="25"
-                Margin="0,310,0,0"/>
-        <Button x:Name="btnAddMedicine" Clicked="btnAddMedicine_Clicked" Text="Add Medicine"
-                WidthRequest="130"
-                BackgroundColor="{StaticResource Primary}"
-                CornerRadius="25"/>
-        <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
-                WidthRequest="100"
-                Margin="0,0,0,10"
-                BackgroundColor="Black"
-                CornerRadius="25"/>
-    </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,10">
+
+            <Button Text="Add Medicine"
+            Command="{Binding AddNewMedicineCommand}"
+            WidthRequest="130"
+            BackgroundColor="{StaticResource Primary}"
+            CornerRadius="25"
+            Margin="0,0,10,0"/>
+
+            <Button x:Name="backButton" Clicked="backButton_Clicked" Text="Back"
+            WidthRequest="100"
+            BackgroundColor="Black"
+            CornerRadius="25"/>
+        </StackLayout>
+
+        <Frame Grid.Row="2" BackgroundColor="Black">
+            <Label Text="NoteBook"
+            FontFamily="OpenSans-Regular.ttf"
+            FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalOptions="Center"
+            TextColor="Gold"/>
+        </Frame>
+    </Grid>
 </ContentPage>
