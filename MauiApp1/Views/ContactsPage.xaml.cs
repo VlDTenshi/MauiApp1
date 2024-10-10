@@ -19,7 +19,7 @@ public partial class ContactsPage : ContentPage
     {
         base.OnAppearing();
 
-        if (_contactViewModel.Contacts == null || !_contactViewModel.Contacts.Any()) // Загрузка, если список пустой
+        if (_contactViewModel.Contacts == null || !_contactViewModel.Contacts.Any()) 
         {
             _contactViewModel.LoadContactsCommand.Execute(null);
         }
@@ -29,29 +29,6 @@ public partial class ContactsPage : ContentPage
 
 
 
-		
-
-    private void btnAdd_Clicked(object sender, EventArgs e)
-    {
-        Shell.Current.GoToAsync(nameof(AddContactPage));
-    }
-
-    //private void Delete_Clicked(object sender, EventArgs e)
-    //{
-    //    var menuItem = sender as MenuItem;
-    //    var contact = menuItem.CommandParameter as Contact;
-    //    ContactRepository.DeleteContact(contact.ContactId);
-
-    //    LoadContacts();
-    //}
-
-    
-
-    //private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
-    //{
-    //    var contacts = new ObservableCollection<Contact>(ContactRepository.SearchContacts(((SearchBar)sender).Text));
-    //    listContacts.ItemsSource = contacts;
-    //}
 
     private async void backButton_Clicked(object sender, EventArgs e)
     {
